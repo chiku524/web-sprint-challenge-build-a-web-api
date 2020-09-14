@@ -32,3 +32,5 @@ server.listen(PORT, () => {
 server.get('/', (req,res) => {
     res.send(`<h1>Hello from Nicos sprint challenge!</h1>`)
 })
+
+module.exports = server;
