@@ -28,3 +28,7 @@ const PORT = 5000;
 server.listen(PORT, () => {
     console.log(`server listening on localhost:${PORT}`);
 })
+
+server.get('/', (req,res) => {
+    res.send(`<h1>Hello from Nicos sprint challenge!</h1>`)
+})
