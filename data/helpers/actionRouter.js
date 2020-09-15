@@ -21,6 +21,15 @@ router.get("/:id", userIdValidation, (req, res) => {
         })
 })
 
+router.get("/:projectID/actionss", projectIdValidation, (req, res) => {
+    const id = req.body.project_id;
+
+    data.get(id)
+        .then(actions => {
+            res.status(200).json(actions);
+        })
+})
+
 router.post("/:id", userIdValidation, (req, res) => {
     const id = req.params.id;
     const {description, notes} = req.body;
@@ -69,6 +78,18 @@ function userIdValidation(req, res, next) {
         })
         .catch(error => {
             res.status(404).json({error: "invalid user ID or missing valid actions"});
+        })
+}
+
+function projectIdValidation(req, res, next) {
+    const id = req.body.project_id;
+
+    data.get(id)
+        .then(response => {
+            next()
+        })
+        .catch(error => {
+            res.status(404).json({error: "invalid project ID"});
         })
 }
 
